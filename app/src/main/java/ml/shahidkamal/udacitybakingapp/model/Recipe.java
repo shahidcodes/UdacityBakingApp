@@ -34,6 +34,9 @@ public class Recipe {
         this.id = id;
     }
 
+    public String getCardName(){
+        return name + "\nServings: " + servings;
+    }
     public String getName() {
         return name;
     }
