@@ -6,11 +6,13 @@ import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import ml.shahidkamal.udacitybakingapp.utils.SimpleIdlingResource;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = "MainActivity";
     private static boolean mTwoPane;
 
     @Nullable
@@ -29,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (findViewById(R.id.tab_list_recipe_container) != null) {
+        View tabView = findViewById(R.id.tab_list_recipe_container);
+        if (tabView != null) {
             mTwoPane = true;
         } else {
             mTwoPane = false;
         }
-
+        Log.d(TAG, "mTwoPane: " + mTwoPane);
         getIdlingResource();
     }
 

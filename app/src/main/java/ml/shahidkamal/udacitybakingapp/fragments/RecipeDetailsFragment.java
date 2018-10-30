@@ -95,4 +95,20 @@ public class RecipeDetailsFragment extends Fragment {
         recyclerViewSteps.setAdapter(stepsListAdapter);
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListState != null) {
+            //Restoring recycler view state
+            linearLayoutManager.onRestoreInstanceState(mListState);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //storing recycler view state
+        outState.putParcelable(Constants.RECYCLER_VIEW_STATE, linearLayoutManager.onSaveInstanceState());
+    }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ml.shahidkamal.udacitybakingapp.R;
+import ml.shahidkamal.udacitybakingapp.RecipeDetailsActivity;
 import ml.shahidkamal.udacitybakingapp.StepsActivity;
 import ml.shahidkamal.udacitybakingapp.model.Steps;
 import ml.shahidkamal.udacitybakingapp.utils.Constants;
@@ -47,12 +48,8 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
         stepsListViewHolder.stepsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, StepsActivity.class);
-                Gson gson = new Gson();
-                String stepsListString =  gson.toJson(stepsList);
-                intent.putExtra(Constants.INTENT_KEY_STEPS_FRAGMENT, stepsListString);
-                intent.putExtra(Constants.INTENT_KEY_STEPS_POSITION, i);
-                context.startActivity(intent);
+                RecipeDetailsActivity activity = (RecipeDetailsActivity) context;
+                activity.changeStepsFragment(i);
             }
         });
     }

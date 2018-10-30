@@ -63,7 +63,6 @@ public class RecipeListFragment extends Fragment {
         if (idlingResource != null) {
             idlingResource.setIdleState(false);
         }
-        mTwoPane = MainActivity.getNoPane();
 
         if (!isNetworkConnected()) {
             Snackbar.make(view, getActivity().getString(R.string.network_error), Snackbar.LENGTH_LONG).show();
@@ -88,10 +87,13 @@ public class RecipeListFragment extends Fragment {
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 List<Recipe> recipes = response.body();
                 adapter = new RecipeListAdapter(getContext(), recipes);
+                mTwoPane = MainActivity.getNoPane();
                 if(mTwoPane){
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+                    Log.d(TAG, "LayoutSize: GridLayout");
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
                     recyclerView.setLayoutManager(gridLayoutManager);
                 }else {
+                    Log.d(TAG, "LayoutSize: LinearLayout");
                     LinearLayoutManager linearLayoutManager = new
                             LinearLayoutManager(getActivity());
                     linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
