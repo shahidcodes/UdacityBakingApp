@@ -25,7 +25,9 @@ public class StepsActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         bundle = getIntent().getExtras();
-        replaceFragment(bundle);
+        if(savedInstanceState == null) {
+            replaceFragment(bundle);
+        }
 
     }
 
